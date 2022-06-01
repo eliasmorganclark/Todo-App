@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "@twilio-paste/core/button";
-import { Badge, Paragraph } from "@twilio-paste/core";
+import { Badge } from "@twilio-paste/core";
 import { WarningIcon } from "@twilio-paste/icons/esm/WarningIcon";
-import { Card } from "@twilio-paste/core";
 import { Heading } from "@twilio-paste/core";
 import { HistoryIcon } from "@twilio-paste/icons/esm/HistoryIcon";
 import {CheckboxCheckIcon } from "@twilio-paste/icons/esm/CheckboxCheckIcon";
 import { Box, Text, Separator } from "@twilio-paste/core";
 import { ChevronDoubleRightIcon } from "@twilio-paste/icons/esm/ChevronDoubleRightIcon";
 import Data from "./Data.css";
+
 
 const baseURL = "http://localhost:3000/data";
 
@@ -18,6 +18,7 @@ export default function DataGet() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
+     
       setTodos(response.data);
     });
   }, []);

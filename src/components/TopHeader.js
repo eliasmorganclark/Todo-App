@@ -1,5 +1,4 @@
 import React from "react";
-import { Heading } from "@twilio-paste/core/heading";
 import { MediaObject, MediaFigure, MediaBody, Text } from "@twilio-paste/core";
 import { LogoTwilioIcon } from "@twilio-paste/icons/esm/LogoTwilioIcon";
 import Data from "./Data.css";
