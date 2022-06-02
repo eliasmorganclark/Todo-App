@@ -17,7 +17,11 @@ export default function DataGet() {
   const [Task, setTask] = useState(null);
 
   React.useEffect(() => {
+<<<<<<<< HEAD:src/components/Todo.js
     axios.get(baseURL + {id}).then((response) => {
+========
+    axios.get(baseURL).then((response) => {
+>>>>>>>> 46ff696 (POST Functionality completed (#3)):src/components/Data.js
      
       setTodos(response.data);
     });
