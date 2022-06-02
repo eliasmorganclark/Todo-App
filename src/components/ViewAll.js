@@ -26,10 +26,9 @@ export default function ViewAll() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-     
       setTodos(response.data);
     });
-  }, [todos]);
+  }, []);
 
   if (!todos) return null;
   
