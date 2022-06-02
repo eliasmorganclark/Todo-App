@@ -43,8 +43,8 @@ export default function TopHeader() {
     </MediaObject>
     <nav id="nav">
       <Stack orientation="horizontal" spacing="space40">
-    <Button variant="secondary" size="small" as="a" href="/v1/todos/new" spacing="space30"> New Task </Button>
-    <Button variant="secondary" size="small" as="a" href="/v1/todos" spacing="space30"> View All Tasks </Button>
+    <Button variant="secondary" size="small" as="a" href="/v1/todos/new" spacing="space30"> New </Button>
+    <Button variant="secondary" size="small" as="a" href="/v1/todos" spacing="space30"> View All </Button>
     </Stack>
     </nav>
     </div>

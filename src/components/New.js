@@ -1,4 +1,4 @@
-import DataGet from "./Data";
+import ViewAll from "./ViewAll";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
@@ -15,7 +15,7 @@ import {
 import Data from "./Data.css";
 import { Navigate, useNavigate } from "react-router";
 
-export default function NewTask() {
+export default function New() {
   const baseURL = "http://localhost:3000/data";
   
   const [newTask, setNewTask] = useState({

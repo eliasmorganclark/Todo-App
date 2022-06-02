@@ -41,3 +41,21 @@ margin: 10px;
 padding: 30px;
 max-width: 750px;
 }
+
+#leftButtons {
+    display: flex;
+    flex-direction: horizontal;
+ 
+}
+
+#leftButtons > :first-child {
+margin: 0 10px;
+}
+
+#rightButtons {
+    display: flex;
+    flex-direction: horizontal;
+}
+#rightButtons > Button {
+   margin: 5px;
+}
