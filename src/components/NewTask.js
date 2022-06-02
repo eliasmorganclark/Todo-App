@@ -10,6 +10,7 @@ import {
   HelpText,
   Select,
   Option,
+  Button,
 } from "@twilio-paste/core";
 import { useRef } from "react";
 
@@ -19,20 +20,21 @@ export default function NewTask() {
   const nameRef = React.useRef("");
   const dueRef = React.useRef("");
   const priorityRef = React.useRef("");
+  
+  const [name, setName] = useState("");
   const newtask = {
-    name: nameRef,
-    due: dueRef,
-    priority: priorityRef,
-    progress: "open",
+    name: name,
+    progress: "open"
   };
-
-  function Submitty(e) {
-    e.preventDefault();
-    React.useEffect(() => {
-      axios.post(baseURL, newtask).then((response) => {
-        //TODO: redirect back to main list ? put some sort of alert in saying it worked?
-      });
-    }, []);
+ 
+    
+  function Submitty() {
+   
+    console.log(newtask);
+    // const newTaskJson = JSON.stringify(newtask);
+    axios.post(baseURL, newtask).then((response) => {
+      //TODO: redirect back to main list ? put some sort of alert in saying it worked?
+    });
   }
 
   return (
@@ -44,7 +46,7 @@ export default function NewTask() {
           name="name"
           type="text"
           placeholder="Input task name here!"
-          ref={nameRef}
+          value=
         />
       </Box>
       <Box>
@@ -60,6 +62,7 @@ export default function NewTask() {
           <Option value="critical">critical</Option>
         </Select>
       </Box>
+      <Button variant="primary" onClick={Submitty}> Submit </Button>
     </form>
   );
 }
