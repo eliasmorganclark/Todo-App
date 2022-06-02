@@ -16,24 +16,30 @@ import { useRef } from "react";
 
 export default function NewTask() {
   const baseURL = "http://localhost:3000/data";
-
-  const nameRef = React.useRef("");
-  const dueRef = React.useRef("");
-  const priorityRef = React.useRef("");
   
-  const [name, setName] = useState("");
-  const newtask = {
-    name: name,
+  const [newTask, setNewTask] = useState({
+    name: "",
+    due: "",
+    priority:"",
     progress: "open"
-  };
+  })
+
+  function ReloadPage() {
+    setNewTask({
+      name: "",
+    due: "",
+    priority:"",
+    progress: "open"
+    });
+    window.location.reload(false);
+  }
  
     
-  function Submitty() {
-   
-    console.log(newtask);
-    // const newTaskJson = JSON.stringify(newtask);
-    axios.post(baseURL, newtask).then((response) => {
-      //TODO: redirect back to main list ? put some sort of alert in saying it worked?
+ const Submitty = (e) => {
+    e.preventDefault()
+    console.log(newTask);
+    axios.post(baseURL, newTask).then((response) => {
+      ReloadPage();
     });
   }
 
@@ -46,17 +52,19 @@ export default function NewTask() {
           name="name"
           type="text"
           placeholder="Input task name here!"
-          value=
+          onChange={(e) => setNewTask({...newTask, name: e.target.value})}
+          value={newTask.name}
         />
       </Box>
       <Box>
         <Label htmlFor="due">Due Date</Label>
-        <DatePicker id="due" ref={dueRef} />
+        <DatePicker id="due" onChange={(e) => setNewTask({...newTask, due: e.target.value})} value={newTask.due}/>
         <HelpText id="due">When is your task due to be completed?</HelpText>
       </Box>
       <Box>
         <Label htmlFor="priority">Priority level</Label>
-        <Select id="priority" ref={priorityRef}>
+        <Select id="priority" defaultValue="select" onChange={(e) => setNewTask({...newTask, priority: e.target.value})}>
+          <Option disabled value="select">Select a level</Option>
           <Option value="low">low</Option>
           <Option value="medium">medium</Option>
           <Option value="critical">critical</Option>
