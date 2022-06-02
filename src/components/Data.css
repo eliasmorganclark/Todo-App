@@ -25,3 +25,19 @@
    padding: 8px;
     
 }
+
+#nav {
+    background-color: #ccc;
+    width:700px;
+    border-radius: 8px;
+    color:rgb(0, 20, 137);
+    padding: 7px;
+    margin: 10px 5px 0px 5px;
+}
+
+#newTaskForm {
+
+margin: 10px;
+padding: 30px;
+max-width: 750px;
+}

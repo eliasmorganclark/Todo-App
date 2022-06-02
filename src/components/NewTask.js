@@ -12,7 +12,8 @@ import {
   Option,
   Button,
 } from "@twilio-paste/core";
-import { useRef } from "react";
+import Data from "./Data.css";
+import { Navigate, useNavigate } from "react-router";
 
 export default function NewTask() {
   const baseURL = "http://localhost:3000/data";
@@ -23,6 +24,7 @@ export default function NewTask() {
     priority:"",
     progress: "open"
   })
+  const navigate = useNavigate();
 
   function ReloadPage() {
     setNewTask({
@@ -31,7 +33,7 @@ export default function NewTask() {
     priority:"",
     progress: "open"
     });
-    window.location.reload(false);
+   navigate("/v1/todos"); 
   }
  
     
@@ -44,7 +46,7 @@ export default function NewTask() {
   }
 
   return (
-    <form>
+    <form id="newTaskForm">
       <Box marginBottom="space80">
         <Label htmlFor="name">Task Name</Label>
         <Input
@@ -56,12 +58,12 @@ export default function NewTask() {
           value={newTask.name}
         />
       </Box>
-      <Box>
+      <Box marginBottom="space80">
         <Label htmlFor="due">Due Date</Label>
         <DatePicker id="due" onChange={(e) => setNewTask({...newTask, due: e.target.value})} value={newTask.due}/>
         <HelpText id="due">When is your task due to be completed?</HelpText>
       </Box>
-      <Box>
+      <Box marginBottom="space80">
         <Label htmlFor="priority">Priority level</Label>
         <Select id="priority" defaultValue="select" onChange={(e) => setNewTask({...newTask, priority: e.target.value})}>
           <Option disabled value="select">Select a level</Option>

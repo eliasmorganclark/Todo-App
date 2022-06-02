@@ -14,10 +14,10 @@ import Data from "./Data.css";
 const baseURL = "http://localhost:3000/data";
 
 export default function DataGet() {
-  const [todos, setTodos] = useState(null);
+  const [Task, setTask] = useState(null);
 
   React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
+    axios.get(baseURL + {id}).then((response) => {
      
       setTodos(response.data);
     });

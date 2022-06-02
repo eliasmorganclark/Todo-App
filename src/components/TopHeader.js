@@ -1,7 +1,8 @@
 import React from "react";
-import { MediaObject, MediaFigure, MediaBody, Text } from "@twilio-paste/core";
+import { MediaObject, MediaFigure, MediaBody, Text, Button, Stack } from "@twilio-paste/core";
 import { LogoTwilioIcon } from "@twilio-paste/icons/esm/LogoTwilioIcon";
 import Data from "./Data.css";
+import { Link } from "react-router-dom";
 
 export default function TopHeader() {
   return (
@@ -40,6 +41,12 @@ export default function TopHeader() {
         </Text>
       </MediaBody>
     </MediaObject>
+    <nav id="nav">
+      <Stack orientation="horizontal" spacing="space40">
+    <Button variant="secondary" size="small" as="a" href="/v1/todos/new" spacing="space30"> New Task </Button>
+    <Button variant="secondary" size="small" as="a" href="/v1/todos" spacing="space30"> View All Tasks </Button>
+    </Stack>
+    </nav>
     </div>
   );
 }
