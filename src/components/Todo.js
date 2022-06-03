@@ -13,6 +13,8 @@ import { EditIcon } from '@twilio-paste/icons/esm/EditIcon';
 import { DeleteIcon } from '@twilio-paste/icons/esm/DeleteIcon';
 import Delete from './DeleteButton';
 import { useParams } from "react-router";
+import { ProcessInProgressIcon } from "@twilio-paste/icons/esm/ProcessInProgressIcon";
+import Update from "./Update";
 
 const baseURL = "http://localhost:3000/data/";
 
@@ -27,24 +29,25 @@ export default function Todo() {
   }, []);
 
   if (!todo) return null;
+ 
 
   function PriorityGet(todo) {
     if (todo.priority === "critical") {
-      return "warning";
+      return { color: "rgb(214, 31, 31)" };
     } else if (todo.priority === "medium") {
-      return "decorative40";
+      return { color: "rgb(244, 124, 34)" };
     } else {
-      return "decorative20";
+      return { color: "	rgb(14, 124, 58)" };
     }
   }
 
   function ProgressGet(todo) {
     if (todo.progress === "completed") {
-      return "decorative30";
+      return { backgroundColor: "rgb(174, 178, 193)" };
     } else if (todo.progress === "in progress") {
-      return "decorative40";
+      return { backgroundColor: "green" };
     } else {
-      return "decorative10";
+      return { backgroundColor: "palegreen" };
     }
   }
 
@@ -61,37 +64,51 @@ export default function Todo() {
   return (
     <div>
       <div id="todoBox" key={todo.id}>
-        <Heading as="h2" variant="heading30">
-          <span style={{ color: "rgb(174, 178, 193)" }}>TODO •</span> &nbsp;
-          {todo.name}
-        </Heading>
+          <Box display="flex" flexDirection="horizontal">
+            <ProcessInProgressIcon
+              decorative={false}
+              title="Progress"
+              color={PriorityGet(todo)}
+              size="sizeIcon80"
+            />
+            <Heading as="h2" variant="heading30" id="heading2">
+              <span style={{ color: "rgb(174, 178, 193)" }}>TODO •</span> &nbsp;
+              {todo.name}
+            </Heading>
+          </Box>
 
-        <Box
-          backgroundColor="colorBackgroundBody"
-          padding="space30"
-          display="flex"
-          border="colorBorderDecorative10Weaker"
-          justifyContent="space-between"
-          key={todo.id}
-        >
-          <div id="leftButtons">
-            <Text as="span" id="dueDate">
-              DUE: {todo.due}
-            </Text>
+          <Box
+            backgroundColor="colorBackgroundBody"
+            padding="space30"
+            display="flex"
+            border="colorBorderDecorative10Weaker"
+            justifyContent="space-between"
+            key={todo.id}
+          >
+            <div id="leftButtons">
+              <Text as="span" id="dueDate">
+                DUE: {todo.due}
+              </Text>
 
-            <Badge as="span" variant={ProgressGet(todo)}>
-              {ProgressGetIcon(todo)}
-              &nbsp; {todo.progress}
-            </Badge>
-          </div>
-          <div id="rightButtons">
-            <Button variant="secondary" size="icon">
-              <EditIcon decorative={false} title="Edit Task" />
-            </Button>
-            <Delete id={todo.id} />
-          </div>
-        </Box>
-      </div>
+              <span id="progress" style={ProgressGet(todo)}>
+                {ProgressGetIcon(todo)}
+                &nbsp; {todo.progress}
+              </span>
+            </div>
+            <div id="rightButtons">
+              <Button
+                variant="secondary"
+                size="icon"
+              >
+                <EditIcon decorative={false} title="Edit Task" />
+              </Button>
+              <Delete id={todo.id} />
+             
+             
+            </div>
+          </Box>
+          <Update prop={todo} />
+        </div>
     </div>
   );
 }

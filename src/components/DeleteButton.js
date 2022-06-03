@@ -26,7 +26,7 @@ export default function Delete({id}) {
 
   return (
     <div>
-      <Button variant="destructive_secondary" size="icon" onClick={handleOpen}>
+      <Button id="deletebutton" variant="destructive_secondary" size="icon" onClick={handleOpen}>
         <DeleteIcon decorative={false} title="Delete Task" />
       </Button>
       <AlertDialog
