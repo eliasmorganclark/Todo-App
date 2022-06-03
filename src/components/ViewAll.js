@@ -12,6 +12,7 @@ import { EditIcon } from '@twilio-paste/icons/esm/EditIcon';
 import { DeleteIcon } from '@twilio-paste/icons/esm/DeleteIcon';
 import Data from "./Data.css";
 import Delete from './DeleteButton';
+import { useNavigate } from "react-router";
 
 const baseURL = "http://localhost:3000/data";
 
@@ -21,14 +22,24 @@ const baseURL = "http://localhost:3000/data";
 
 export default function ViewAll() {
   const [todos, setTodos] = useState(null);
+  
 
+const navigate = useNavigate();
 
-
+function UpdateView(id){
+  
+  navigate("/v1/todos/" + id);
+}
+let todoSize = 1;
   React.useEffect(() => {
+  
     axios.get(baseURL).then((response) => {
       setTodos(response.data);
+      if (todos != null) {
+         todoSize = todos.length}
+     
     });
-  }, []);
+  }, [todoSize]);
 
   if (!todos) return null;
   
@@ -57,13 +68,15 @@ export default function ViewAll() {
       else { return <HistoryIcon decorative={false} title="Progress" />}
   };
 
+  
+
   return (
     <div>
       {todos.map((todo) => (
         <div id="todoBox" key={todo.id}>
 
 
-          <Heading as="h2" variant="heading30"  >
+          <Heading as="h2" variant="heading30" >
             <span style={{color: "rgb(174, 178, 193)"}}>TODO •</span> &nbsp;{todo.name}
           </Heading>
 
@@ -87,7 +100,7 @@ export default function ViewAll() {
          </div>
             <div id="rightButtons">
             
-            <Button variant="secondary" size="icon">
+            <Button variant="secondary" size="icon" onClick={()=> {UpdateView(todo.id)}}>
               <EditIcon decorative={false} title="Edit Task" />
             </Button>
             <Delete id = {todo.id} />
