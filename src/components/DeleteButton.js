@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
+
 export default function Delete({id}) {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(true);
@@ -18,13 +19,14 @@ export default function Delete({id}) {
     console.log("Deleted @ " + id);
    
     axios.delete(baseURL + id).then((response) => {
-      //TODO: refresh data lol 
+      navigate("/v1/todos/");
+      
     });
   };
 
   return (
     <div>
-      <Button variant="destructive_secondary" size="icon" onClick={handleOpen}>
+      <Button id="deletebutton" variant="destructive_secondary" size="icon" onClick={handleOpen}>
         <DeleteIcon decorative={false} title="Delete Task" />
       </Button>
       <AlertDialog

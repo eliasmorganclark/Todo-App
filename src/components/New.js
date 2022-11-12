@@ -13,7 +13,7 @@ import {
   Button,
 } from "@twilio-paste/core";
 import Data from "./Data.css";
-import { Navigate, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 
 export default function New() {
   const baseURL = "http://localhost:3000/data";
